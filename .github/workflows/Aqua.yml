@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: julia-actions/setup-julia@latest
         with:
-          version: '1'
+          version: "1"
       - name: Aqua.jl
         run: |
-          julia --color=yes -e 'using Pkg; Pkg.add("Aqua"); Pkg.develop(path="."); using Aqua, JSOTemplate; Aqua.test_all(JSOTemplate, ambiguities=false); Aqua.test_ambiguities(JSOTemplate)'
+          julia --color=yes -e 'using Pkg; Pkg.add("Aqua"); Pkg.develop(path="."); using Aqua, {{ PackageName }}; Aqua.test_all({{ PackageName }}, ambiguities=false); Aqua.test_ambiguities({{ PackageName }})'

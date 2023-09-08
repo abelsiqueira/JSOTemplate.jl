@@ -1,0 +1,26 @@
+using {{ PackageName }}
+using Documenter
+
+DocMeta.setdocmeta!({{ PackageName }}, :DocTestSetup, :(using {{ PackageName }}); recursive = true)
+
+makedocs(;
+  modules = [{{ PackageName }}],
+  doctest = true,
+  linkcheck = false,
+  strict = false,
+  authors = "{{ AuthorName }} <{{ AuthorEmail }}> and contributors",
+  repo = "https://github.com/JuliaSmoothOptimizers/{{ PackageName }}.jl/blob/{commit}{path}#{line}",
+  sitename = "{{ PackageName }}.jl",
+  format = Documenter.HTML(;
+    prettyurls = get(ENV, "CI", "false") == "true",
+    canonical = "https://JuliaSmoothOptimizers.github.io/{{ PackageName }}.jl",
+    assets = ["assets/style.css"],
+  ),
+  pages = ["Home" => "index.md", "Reference" => "reference.md"],
+)
+
+deploydocs(;
+  repo = "github.com/JuliaSmoothOptimizers/{{ PackageName }}.jl",
+  push_preview = true,
+  devbranch = "main",
+)

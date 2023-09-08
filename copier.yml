@@ -1,0 +1,48 @@
+PackageName:
+  type: str
+  help: Package name without '.jl'
+  validator: "{% if PackageName | length == 0 %}Can't be empty{% endif %}"
+
+PackageUUID:
+  type: str
+  help: UUID v4 (Generate this with uuidgen or in Julia with `using UUIDs; uuid4()`)
+  validator: "{% if PackageUUID | length == 0 %}Can't be empty{% endif %}"
+
+AuthorName:
+  type: str
+  validator: "{% if AuthorName | length == 0 %}Can't be empty{% endif %}"
+
+AuthorEmail:
+  type: str
+  validator: "{% if AuthorEmail | length == 0 %}Can't be empty{% endif %}"
+
+JuliaMinVersion:
+  type: str
+  help: Minimum Julia version to be used in Project.toml and CI (Normally the LTS version)
+  default: 1.6
+
+AddMacToCI:
+  type: bool
+  help: Add macos on CI?
+
+AddWinToCI:
+  type: bool
+  help: Add windows on CI?
+
+RunJuliaNightlyOnCI:
+  type: bool
+  help: Run the nightly version of Julia on CI?
+
+UseCirrusCI:
+  type: bool
+  help: Create a .cirrusci.yml file?
+
+_exclude:
+  - copier.yml
+  - .git
+  - src/compliance.jl
+  - .github/workflows/Aqua.yml
+  - .github/workflows/Invalidations.yml
+
+_tasks:
+  - git init

@@ -1,4 +1,4 @@
-# Script to check compliance of the packages wrt the JSOTemplate
+# Script to check compliance of the packages wrt the {{ PackageName }}
 using Emporium, Formatting, GitHub
 
 const simple_copy_file_list =
@@ -20,7 +20,7 @@ function template_compliance(repo)
   # clone_organization_repos(
   #   "JuliaSmoothOptimizers",
   #   "cloned_repos",
-  #   exclude=["Organization", "JuliaSmoothOptimizers.github.io", "JSOTemplate.jl", ".github"]
+  #   exclude=["Organization", "JuliaSmoothOptimizers.github.io", "{{ PackageName }}.jl", ".github"]
   # )
 
   if length(split(repo, "/")) != 2
@@ -43,9 +43,9 @@ function template_compliance(repo)
     commit_message = "[skip ci] :bot: Template compliance update",
     create_pr = true,
     owner = owner,
-    pr_title = "[JSOTemplate.jl] Template compliance update",
-    pr_body = "This is an automated PR made from JSOTemplate.jl. If the result is not what you expected, please open an issue or [at] abelsiqueira",
+    pr_title = "[{{ PackageName }}.jl] Template compliance update",
+    pr_body = "This is an automated PR made from {{ PackageName }}.jl. If the result is not what you expected, please open an issue or [at] abelsiqueira",
     rename_these_files = renaming,
-    template_pkg_name = "JSOTemplate",
+    template_pkg_name = "{{ PackageName }}",
   )
 end
